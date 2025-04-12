@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positive Affirmation Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        form:hover {
+            transform: scale(1.05);
+        }
+
+        label {
+            font-size: 1.3em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #ff758c;
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(255, 117, 140, 0.6);
+        }
+
+        button {
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff5c72;
+            transform: scale(1.1);
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1.8em;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 1.2em;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 10px;
+            max-width: 80%;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        {% if affirmation %}
+    <h2>Your Affirmation:</h2>
+    <p>{{ affirmation }}</p>
+
+    <!-- Audio Player (Force Browser to Reload Audio) -->
+    <audio controls>
+        <source src="{{ audio_file }}?t={{ random_number }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+{% endif %}
+
+    </style>
+</head>
+<body>
+
+    <h1>✨ Generate Your Positive Affirmation ✨</h1>
+    
+    <form method="POST">
+        <label for="mood">How are you feeling today?</label>
+        <input type="text" name="mood" id="mood" placeholder="Enter your mood (e.g., stressed, happy)">
+        <button type="submit">Generate Affirmation</button>
+    </form>
+
+    {% if affirmation %}
+        <h2>Your Affirmation:</h2>
+        <p>{{ affirmation }}</p>
+
+        <!-- Audio Player to play the generated affirmation -->
+        <audio controls>
+            <source src="{{ audio_file }}" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    {% endif %}
+
+</body>
+</html>
